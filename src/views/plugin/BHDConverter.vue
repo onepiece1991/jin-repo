@@ -138,7 +138,6 @@ export default {
         selection.removeAllRanges();
         if (currentRange) {
           // 还原用户选中内容
-          console.log(111);
           selection.addRange(currentRange);
         }
       }
