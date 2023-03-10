@@ -1,59 +1,120 @@
 <template>
-  <!-- <div class="root login-root">
-    <div class="login-main">
-      <h2>Welcome to the jin-repo!</h2>
-      <div class="login-form">
-        <input
-          class="login-input"
-          type="text"
-          placeholder="请输入用户名"
-          id="userName"
-          @focus="nameFocus"
-          @blur="nameBlur"
-        />
-        <p class="error-msg">{{ errorNameTips }}</p>
-        <input
-          class="login-input"
-          type="password"
-          placeholder="请输入密码"
-          id="userPassword"
-        />
-        <p class="error-msg">{{ errorPasswordTips }}</p>
-        <button class="login-btn" @click="logIn">登录</button>
+  <div class="root">
+    <header>
+      <div class="search-box">
+        <input type="search" class="search-input" />
+        <i class="search-btn"></i>
+      </div>
+      <div class="login-msg" @mouseover="showSetInfo" @mouseout="hideSetInfo">
+        <div class="user-img">
+          <img :src="userImg" />
+        </div>
+        <p class="user-name">{{ userName }}</p>
+        <div
+          class="login-set"
+          @mouseover="showSetInfo"
+          @mouseout="hideSetInfo"
+          v-show="setInfoShow"
+        >
+          <ul>
+            <li @click="setInfoShow = !setInfoShow">
+              <router-link to="/about">个人中心</router-link>
+            </li>
+            <li @click="logOut">退出登录</li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <div class="main">
+      <nav class="menu-box">
+        <ul>
+          <li class="menu-item" v-for="(item, i) in menuList" :key="i">
+            <router-link :to="item.link">{{ item.name }}</router-link>
+          </li>
+        </ul>
+      </nav>
+      <div class="main-page">
+        <router-view></router-view>
       </div>
     </div>
-  </div> -->
-  <router-view />
+    <popupAlert
+      popupMsg="确定退出登录？"
+      ref="logout"
+      @onclick="confirmQuit"
+      @onclickCancel="cancelQuit"
+      cancelbtn="true"
+    ></popupAlert>
+  </div>
 </template>
 
 <script>
-// import { goPage } from "@/utility/global";
+import popupAlert from "@/components/base/popupAlert";
 export default {
   data() {
     return {
       logOutFlag: false, // 未登录
       errorNameTips: "111",
       errorPasswordTips: "222",
+      userImg: require("@/assets/images/jxx.jpg"),
+      userName: "Jiniuer",
+      menuList: [
+        {
+          name: "Home",
+          link: "/home",
+        },
+        {
+          name: "About",
+          link: "/about",
+        },
+        {
+          name: "Plugin",
+          link: "/plugin",
+        },
+        {
+          name: "EchartsGroup",
+          link: "/echartsGroup",
+        },
+      ],
+      setInfoShow: false, // 个人信息下拉列表
     };
   },
   methods: {
-    logIn() {
-      // goPage("/main");
-      this.$router.push("/main");
+    showSetInfo() {
+      this.setInfoShow = true;
     },
+    hideSetInfo() {
+      this.setInfoShow = false;
+    },
+    logIn() {
+      this.logOutFlag = false;
+    },
+    logOut() {
+      this.$refs.logout.show();
+    },
+    // 确定退出登录---确定
+    confirmQuit() {
+      this.$refs.logout.hide();
+      this.$router.push("/");
+    },
+    // 确定退出登录---取消
+    cancelQuit() {
+      this.$refs.logout.hide();
+    },
+  },
+  components: {
+    popupAlert,
   },
 };
 </script>
-
 <style src="@/assets/styles/reset.css"></style>
-<style lang="less">
+<style lang="less" scoped>
 body > div {
   height: 100%;
 }
 .root {
   height: 100%;
   &.login-root {
-    background: url(assets/images/bg.png) no-repeat center;
+    background: url(../assets/images/bg.png) no-repeat center;
     background-size: cover;
   }
   .login-main {
@@ -169,74 +230,7 @@ header {
     width: 30px;
     height: 34px;
     cursor: pointer;
-    background: url(assets/images/search.png) no-repeat center;
-  }
-}
-.login-msg {
-  display: flex;
-  align-items: center;
-  position: relative;
-  .user-img {
-    margin-right: 10px;
-    padding: 2px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 1px solid #42b983;
-    img {
-      display: block;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-    }
-  }
-  .user-name {
-    font-size: 13px;
-    line-height: 20px;
-    color: #333;
-  }
-  .login-set {
-    position: absolute;
-    padding-top: 30px;
-    top: 10px;
-    right: 0px;
-    ul {
-      position: relative;
-      padding: 10px;
-      background-color: #fff;
-      border-radius: 8px;
-      z-index: 10;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-
-      &:before {
-        content: "";
-        position: absolute;
-        top: -12px;
-        border: 6px solid transparent;
-        border-bottom-color: #fff;
-      }
-      li {
-        white-space: nowrap;
-        font-size: 14px;
-        line-height: 30px;
-        color: #666;
-        border-bottom: 1px solid #eee;
-        cursor: pointer;
-        &:last-child {
-          border-bottom: 0;
-        }
-        &:hover {
-          color: #42b983;
-        }
-        a {
-          display: block;
-          &.router-link-exact-active,
-          &:hover {
-            color: #42b983;
-          }
-        }
-      }
-    }
+    background: url(../assets/images/search.png) no-repeat center;
   }
 }
 </style>
