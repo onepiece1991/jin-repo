@@ -1,0 +1,31 @@
+name: Docker Image CI # Actions名称
+
+on: [push] # 执行时机
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+
+      - name: install
+        run: npm
+
+      - name: build project
+        run: npm run build
+        
+      - name: Build the Docker image # 步骤名字
+        run: |
+          docker login --username=${{ secrets.DOCKER_USERNAME }} registry.cn-hangzhou.aliyuncs.com --password=${{ secrets.DOCKER_PASSWORD }}
+          docker build -t jin-repo:latest . 
+          docker tag jin-repo registry.cn-hangzhou.aliyuncs.com/jin-repo/jin-repo:latest
+          docker push registry.cn-hangzhou.aliyuncs.com/jin-repo/jin-repo:latest # 推送
+      - name: ssh docker login
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: cd ~ && sh jin-repo-deploy.sh ${{ secrets.DOCKER_USERNAME }} ${{ secrets.DOCKER_PASSWORD }}
