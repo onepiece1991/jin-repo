@@ -70,7 +70,7 @@
       <div class="result" v-show="showResult">
         <div class="head">
           <h2>{{ currentIndex }}进制转换成{{ targetIndex }}的结果：</h2>
-          <button class="copy" type="button" @click="copy">
+          <button class="copy" type="button" @click="copy(resultMsg)">
             <svg viewBox="0 0 50 50">
               <path
                 d="M5,2H39a1,1,0,0,1,1,1V41a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V3A1,1,0,0,1,5,2ZM6,44H5a3,3,0,0,1-3-3V3A3,3,0,0,1,5,0H39a3,3,0,0,1,3,3V8h2a4,4,0,0,1,4,4V46a4,4,0,0,1-4,4H10a4,4,0,0,1-4-4V44Zm2,2a2,2,0,0,0,2,2H44a2,2,0,0,0,2-2V12a2,2,0,0,0-2-2H42V41a3,3,0,0,1-3,3H8v2Z"
@@ -88,6 +88,7 @@
 </template>
 
 <script>
+import Clipboard from "clipboard";
 export default {
   data() {
     return {
@@ -115,32 +116,28 @@ export default {
       this.resultMsg = m.toString(this.targetIndex);
     },
     // 复制
-    copy() {
-      // const copyButton = document.getElementById("copyButton");
-      const content = document.getElementById("content");
-      const selection = window.getSelection();
-      const range = document.createRange();
-      // 缓存用户选中的内容
-      const currentRange =
-        selection.rangeCount === 0 ? null : selection.getRangeAt(0);
-      // 设置文档片段
-      range.selectNodeContents(content);
-      // 清空选中内容
-      selection.removeAllRanges();
-      // 将文档片段设置为选中内容
-      selection.addRange(range);
-      try {
-        // 复制到剪贴板
-        document.execCommand("copy");
-      } catch (err) {
-        // 提示复制失败
-      } finally {
-        selection.removeAllRanges();
-        if (currentRange) {
-          // 还原用户选中内容
-          selection.addRange(currentRange);
+    copy(txt) {
+      let clipboard = new Clipboard(".copy", {
+        text: () => {
+          return txt;
+        },
+      });
+      // clipboard.on("success", (e) => {
+      clipboard.on("success", () => {
+        console.log("复制成功！");
+        // console.log(e.action); // 动作
+        // console.log(e.text); // 复制的文本内容
+        // console.log(e.trigger);
+        clipboard.destroy();
+      });
+      clipboard.on("error", () => {
+        if (typeof txt != undefined) {
+          console.log("请输入正确的值");
+        } else {
+          console.log("该浏览器不支持自动复制,请手动复制！");
         }
-      }
+        clipboard.destroy();
+      });
     },
   },
 };
@@ -278,7 +275,6 @@ export default {
 .result {
   background: #fffaf8;
   line-height: 44px;
-  margin-bottom: 20rem;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 2px -4px rgba(202, 123, 123, 0.2);
