@@ -11,10 +11,10 @@ jobs:
         uses: actions/checkout@master
 
       - name: install
-        run: npm
+        run: yarn
 
       - name: build project
-        run: npm run build
+        run: yarn run build
         
       - name: Build the Docker image # 步骤名字
         run: |
