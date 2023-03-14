@@ -15,12 +15,12 @@ const routes = [
       {
         path: "/home",
         name: "HomePage",
-        component: () => import("../views/home"),
+        component: () => import("../views/Home"),
       },
       {
         path: "/about",
         name: "About",
-        component: () => import("../views/about"),
+        component: () => import("../views/About"),
       },
       {
         path: "/plugin",
