@@ -20,9 +20,6 @@
         />
         <p class="error-msg">{{ errorPasswordTips }}</p>
         <button class="login-btn" @click="logIn">登录</button>
-        <p>firstName：{{ firstName }} <input v-model="firstName" /></p>
-        <p>lastName：{{ lastName }}</p>
-        <p>fullName：{{ fullName }}</p>
       </div>
     </div>
   </div>
@@ -34,23 +31,7 @@ export default {
   data() {
     return {
       logOutFlag: false, // 未登录
-      errorNameTips: "111",
-      errorPasswordTips: "222",
-      firstName: "张",
-      lastName: "三",
-      fullName: "张-三",
     };
-  },
-  //监视属性
-  watch: {
-    //简写形式
-    firstName(val) {
-      //当firstName修改后，1秒后触发计时器修改fullName
-      //不写成setTimeout(function(){this.fullName = val +'-'+ this.lastName},1000);
-      setTimeout(() => {
-        this.fullName = val + "-" + this.lastName;
-      }, 1000);
-    },
   },
   methods: {
     logIn() {

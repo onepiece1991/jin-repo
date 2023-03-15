@@ -85,14 +85,15 @@ export default {
     hideSetInfo() {
       this.setInfoShow = false;
     },
-    logIn() {
-      this.logOutFlag = false;
-    },
+    // logIn() {
+    //   this.logOutFlag = false;
+    // },
     logOut() {
       this.$refs.logout.show();
     },
     // 确定退出登录---确定
     confirmQuit() {
+      this.logOutFlag = true;
       this.$refs.logout.hide();
       this.$router.push("/");
     },
