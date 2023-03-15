@@ -23,8 +23,8 @@
       </div>
     </div>
   </div> -->
-  <p>test</p>
-  <router-view />
+  <p>test01</p>
+  <router-view></router-view>
 </template>
 
 <script>
