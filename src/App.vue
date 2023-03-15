@@ -23,6 +23,7 @@
       </div>
     </div>
   </div> -->
+  <p>test</p>
   <router-view />
 </template>
 
