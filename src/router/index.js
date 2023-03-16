@@ -1,4 +1,6 @@
-import { createRouter, createWebHistory } from "vue-router";
+// import { createRouter, createWebHistory } from "vue-router";
+// 打包
+import { createRouter, createWebHashHistory } from "vue-router";
 
 const routes = [
   {
@@ -119,7 +121,9 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  // history: createWebHistory(process.env.BASE_URL),
+  // 打包
+  history: createWebHashHistory(),
   routes,
 });
 
