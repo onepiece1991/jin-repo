@@ -7,7 +7,7 @@
           class="login-input"
           type="text"
           placeholder="请输入用户名"
-          id="userName"
+          v-model="userName"
           @focus="nameFocus"
           @blur="nameBlur"
         />
@@ -16,13 +16,12 @@
           class="login-input"
           type="password"
           placeholder="请输入密码"
-          id="userPassword"
+          v-model="userPassword"
         />
-        <p class="error-msg">{{ errorPasswordTips }}</p>
+        <p class="error-msg">
+          {{ errorPasswordTips }}
+        </p>
         <button class="login-btn" @click="logIn">登录</button>
-        <p>firstName：{{ firstName }} <input v-model="firstName" /></p>
-        <p>lastName：{{ lastName }}</p>
-        <p>fullName：{{ fullName }}</p>
       </div>
     </div>
   </div>
@@ -34,29 +33,25 @@ export default {
   data() {
     return {
       logOutFlag: false, // 未登录
-      errorNameTips: "111",
-      errorPasswordTips: "222",
-      firstName: "张",
-      lastName: "三",
-      fullName: "张-三",
+      errorNameTips: "",
+      errorPasswordTips: "",
     };
-  },
-  //监视属性
-  watch: {
-    //简写形式
-    firstName(val) {
-      //当firstName修改后，1秒后触发计时器修改fullName
-      //不写成setTimeout(function(){this.fullName = val +'-'+ this.lastName},1000);
-      setTimeout(() => {
-        this.fullName = val + "-" + this.lastName;
-      }, 1000);
-    },
   },
   methods: {
     logIn() {
       let that = this;
+      // 用户验证-先不传
+      // if (this.userName != "金金") {
+      //   this.errorNameTips = "请输入正确的用户名！";
+      //   this.errorPasswordTips = "";
+      // } else if (this.userPassword != 520) {
+      //   this.errorNameTips = "";
+      //   this.errorPasswordTips = "请输入正确的密码！";
+      // } else {
+      //   this.errorNameTips = "";
+      //   this.errorPasswordTips = "";
+      // }
       goPage(that, "/main");
-      console.log(that);
       // this.$router.push("/main");
     },
   },

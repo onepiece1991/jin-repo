@@ -1,0 +1,24 @@
+{
+  "foodList": [
+    { "id": 1, "text": "煎饼果子", "checkFlag": true },
+    { "id": 2, "text": "铁锅炖大鹅", "checkFlag": true },
+    { "id": 3, "text": "臭豆腐", "checkFlag": true },
+    { "id": 4, "text": "豆腐脑", "checkFlag": true },
+    { "id": 5, "text": "烤馕", "checkFlag": true },
+    { "id": 6, "text": "牛排", "checkFlag": true },
+    { "id": 7, "text": "大盘鸡", "checkFlag": true },
+    { "id": 8, "text": "披萨", "checkFlag": true },
+    { "id": 9, "text": "烤全羊", "checkFlag": true },
+    { "id": 10, "text": "肉夹馍", "checkFlag": true },
+    { "id": 11, "text": "红糖冰粉", "checkFlag": true },
+    { "id": 12, "text": "各种榴莲制品", "checkFlag": true },
+    { "id": 13, "text": "烤冷面", "checkFlag": true },
+    { "id": 14, "text": "烤包子", "checkFlag": true },
+    { "id": 15, "text": "铁板鱿鱼", "checkFlag": true },
+    { "id": 16, "text": "九宫格麻辣火锅", "checkFlag": true },
+    { "id": 17, "text": "酸菜鱼", "checkFlag": true },
+    { "id": 18, "text": "芒果糯米饭", "checkFlag": true },
+    { "id": 19, "text": "菠萝咕咾肉", "checkFlag": true },
+    { "id": 20, "text": "糍粑", "checkFlag": true }
+  ]
+}
