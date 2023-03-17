@@ -8,7 +8,6 @@
           type="text"
           placeholder="请输入用户名"
           v-model="userName"
-          @focus="nameFocus"
           @blur="nameBlur"
         />
         <p class="error-msg">{{ errorNameTips }}</p>
@@ -53,6 +52,12 @@ export default {
       // }
       goPage(that, "/main");
       // this.$router.push("/main");
+    },
+    // 失去焦点验证用户名
+    nameBlur() {
+      if (this.userPassword != 520) {
+        this.errorNameTips = "请输入用户名！";
+      }
     },
   },
 };
