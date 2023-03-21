@@ -16,8 +16,8 @@ jobs:
       - name: Checkout  ️ 
         uses: actions/checkout@v3
 
-      - name: Build   # 安装依赖、打包，如果提前已打包好无需这一步
-        run: npm run build
+      # - name: Build   # 安装依赖、打包，如果提前已打包好无需这一步
+      #  run: npm run build
 
       - name: Deploy   # 部署
         uses: JamesIves/github-pages-deploy-action@v4.3.3

@@ -21,7 +21,8 @@ module.exports = {
     proxy: {
       "/api": {
         /* 目标代理服务器地址 */
-        target: "http://localhost:8080/",
+        target: "https://onepiece1991.github.io/",
+        secure: false, // 如果是https接口，需要配置这个参数
         /* 允许跨域 */
         changeOrigin: true,
         // secure: false, // 如果是https接口，需要配置这个参数
