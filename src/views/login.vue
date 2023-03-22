@@ -20,7 +20,7 @@
         <p class="error-msg">
           {{ errorPasswordTips }}
         </p>
-        <button class="login-btn" @click="logIn">登录a</button>
+        <button class="login-btn" @click="logIn">登录b</button>
       </div>
     </div>
   </div>
