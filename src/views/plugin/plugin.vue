@@ -59,7 +59,7 @@ export default {
         },
         {
           link: "/bigWheel",
-          title: "大转盘之",
+          title: "大转盘之今天吃什么",
           time: "2022",
         },
         {

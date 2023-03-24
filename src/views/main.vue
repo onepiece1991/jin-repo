@@ -62,9 +62,6 @@ import { goPage } from "@/utility/global";
 export default {
   data() {
     return {
-      logOutFlag: false, // 未登录
-      errorNameTips: "111",
-      errorPasswordTips: "222",
       userImg: require("@/assets/images/jxx.jpg"),
       userName: "Jiniuer",
       currentMenu: 0,
@@ -100,9 +97,6 @@ export default {
     },
     hideSetInfo() {
       this.setInfoShow = false;
-    },
-    logIn() {
-      this.logOutFlag = false;
     },
     logOut() {
       this.$refs.logout.show();
