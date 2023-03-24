@@ -327,4 +327,40 @@ export default {
     color: #222;
   }
 }
+@media screen and (max-width: 500px) {
+  .c-main {
+    padding: 0.1rem;
+    .c-menu {
+      li {
+        a {
+          padding: 0 0.05rem;
+          font-size: 0.12rem;
+          line-height: 0.4rem;
+        }
+      }
+    }
+  }
+  .operate {
+    position: relative;
+    padding: 0.4rem 0.1rem 0.2rem;
+    span {
+      position: absolute;
+      top: 0;
+      line-height: 0.4rem;
+    }
+    button {
+      width: 0.5rem;
+      font-size: 0.16rem;
+      border-radius: 0.08rem;
+      line-height: 0.4rem;
+    }
+    .hots {
+      width: calc(100% - 0.6rem);
+      border-radius: 0.06rem;
+      label {
+        font-size: 0.12rem;
+      }
+    }
+  }
+}
 </style>
