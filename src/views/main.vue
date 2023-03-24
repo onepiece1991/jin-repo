@@ -28,8 +28,17 @@
     <div class="main">
       <nav class="menu-box">
         <ul>
-          <li class="menu-item" v-for="(item, i) in menuList" :key="i">
-            <router-link :to="item.link">{{ item.name }}</router-link>
+          <li
+            class="menu-item"
+            v-for="(item, i) in menuList"
+            :key="'menu0' + i"
+          >
+            <!-- <router-link :to="item.link">{{ item.name }}</router-link> -->
+            <a
+              @click="gotoView(i, item.link)"
+              :class="{ active: currentMenu == i }"
+              >{{ item.name }}</a
+            >
           </li>
         </ul>
       </nav>
@@ -49,6 +58,7 @@
 
 <script>
 import popupAlert from "@/components/base/popupAlert";
+import { goPage } from "@/utility/global";
 export default {
   data() {
     return {
@@ -57,6 +67,7 @@ export default {
       errorPasswordTips: "222",
       userImg: require("@/assets/images/jxx.jpg"),
       userName: "Jiniuer",
+      currentMenu: 0,
       menuList: [
         {
           name: "Home",
@@ -79,6 +90,11 @@ export default {
     };
   },
   methods: {
+    gotoView(n, url) {
+      let that = this;
+      goPage(that, url);
+      this.currentMenu = n;
+    },
     showSetInfo() {
       this.setInfoShow = true;
     },
@@ -113,64 +129,6 @@ body > div {
 }
 .root {
   height: 100%;
-  &.login-root {
-    background: url(../assets/images/bg.png) no-repeat center;
-    background-size: cover;
-  }
-  .login-main {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    h2 {
-      margin-bottom: 20px;
-      font-size: 20px;
-      color: #fff;
-      line-height: 30px;
-      font-weight: bold;
-      text-align: center;
-    }
-    .login-form {
-      width: 400px;
-      padding: 40px 20px 20px;
-      background-color: #fff;
-      border-radius: 8px;
-      .login-input {
-        display: block;
-        width: 100%;
-        height: 40px;
-        padding-left: 10px;
-        font-size: 14px;
-        color: #333;
-        line-height: 38px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-      }
-      .error-msg {
-        height: 20px;
-        margin-bottom: 10px;
-        font-size: 14px;
-        color: #f65a5a;
-        line-height: 20px;
-      }
-    }
-    .login-btn {
-      display: block;
-      margin: 0 auto;
-      width: 100%;
-      font-size: 15px;
-      color: #fff;
-      line-height: 40px;
-      font-weight: bold;
-      text-align: center;
-      background-color: #42b983;
-      border-radius: 6px;
-      &:active {
-        background-color: #04a55c;
-      }
-    }
-  }
   .main {
     display: flex;
     height: calc(100% - 60px);
@@ -185,7 +143,7 @@ body > div {
           font-weight: bold;
           color: #2c3e50;
           line-height: 1.5;
-          &.router-link-exact-active,
+          &.active,
           &:hover {
             color: #42b983;
           }
@@ -231,6 +189,112 @@ header {
     height: 34px;
     cursor: pointer;
     background: url(../assets/images/search.png) no-repeat center;
+  }
+}
+.login-msg {
+  display: flex;
+  align-items: center;
+  position: relative;
+  .user-img {
+    margin-right: 10px;
+    padding: 2px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #42b983;
+    img {
+      display: block;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
+  }
+  .user-name {
+    font-size: 13px;
+    line-height: 20px;
+    color: #333;
+  }
+  .login-set {
+    position: absolute;
+    padding-top: 30px;
+    top: 10px;
+    right: 0px;
+    ul {
+      position: relative;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 8px;
+      z-index: 10;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: -12px;
+        border: 6px solid transparent;
+        border-bottom-color: #fff;
+      }
+      li {
+        white-space: nowrap;
+        font-size: 14px;
+        line-height: 30px;
+        color: #666;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+        &:last-child {
+          border-bottom: 0;
+        }
+        &:hover {
+          color: #42b983;
+        }
+        a {
+          display: block;
+          &.router-link-exact-active,
+          &:hover {
+            color: #42b983;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .root {
+    header {
+      height: 0.6rem;
+    }
+    .main {
+      height: calc(100% - 1.2rem);
+      .menu-box {
+        position: absolute;
+        bottom: 0;
+        padding: 0;
+        width: 100%;
+        z-index: 10;
+        background-color: #fff;
+        ul {
+          display: flex;
+          justify-content: space-around;
+          .menu-item {
+            a {
+              min-width: auto;
+              text-align: center;
+              padding: 0 0.1rem;
+              font-size: 0.14rem;
+              height: 0.6rem;
+              line-height: 0.6rem;
+            }
+          }
+        }
+      }
+      .main-page {
+        padding: 0.1rem;
+        overflow-y: auto;
+        .cont-box {
+          padding: 0.1rem;
+        }
+      }
+    }
   }
 }
 </style>

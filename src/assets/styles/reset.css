@@ -114,7 +114,7 @@ body {
   height: 100%;
 }
 html {
-  font-size: 100%;
+  /* font-size: 100%; */
   -ms-text-size-adjust: 100%;
   /*防止iPhone在坚屏转向横屏时放大文字*/
   -webkit-text-size-adjust: 100%;
@@ -468,4 +468,12 @@ svg:not(:root) {
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
+}
+@media screen and (max-width: 500px) {
+  html {
+    font-size: 26.666666666666667vw;
+  }
+  body {
+    font-size: 0.14rem;
+  }
 }

@@ -2,16 +2,17 @@
   <div class="cont-box">
     <ul class="list-box">
       <li v-for="(item, i) in pluginList" :key="i">
-        <router-link :to="item.link">
+        <a @click="gotoView(item.link)">
           <h4 class="title">{{ item.title }}</h4>
           <p class="time">{{ item.time }}</p>
-        </router-link>
+        </a>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import { goPage } from "@/utility/global";
 export default {
   data() {
     return {
@@ -69,14 +70,16 @@ export default {
         {
           link: "/BHDConverter",
           title: "进制转换器",
-          time: "2022",
+          time: "2023",
         },
       ],
     };
   },
   methods: {
-    goPage(url) {
-      this.$router.push(url);
+    gotoView(url) {
+      let that = this;
+      goPage(that, url);
+      // this.$router.push(url);
     },
   },
 };
@@ -119,6 +122,20 @@ export default {
         bottom: 10px;
         right: 10px;
         color: #999;
+      }
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .list-box {
+    li {
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin-bottom: 0.1rem;
+      a {
+        height: auto;
+        padding: 0.1rem 0.6rem 0.1rem 0.1rem;
       }
     }
   }
