@@ -559,7 +559,7 @@ export default {
   methods: {
     getData() {
       localServer
-        .get("/baseD/echartsData.json")
+        .get("./baseD/echartsData.json")
         .then((res) => {
           lineOption.series[0].data = res.data.lineData.yVal;
           // 仪表盘-弧线
