@@ -102,7 +102,7 @@ export default {
   methods: {
     getData() {
       localServer
-        .get("/baseD/food.json")
+        .get("./baseD/food.json")
         .then((res) => {
           this.foodList = res.data.foodList;
           this.initPrizeList(this.foodList);

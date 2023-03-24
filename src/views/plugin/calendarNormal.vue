@@ -68,7 +68,7 @@ export default {
     },
     getWeekData() {
       localServer
-        .get("/baseD/mark.json")
+        .get("./baseD/mark.json")
         .then((res) => {
           this.markDateArr = res.data.markDate;
         })

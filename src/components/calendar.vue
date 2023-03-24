@@ -245,7 +245,7 @@ export default {
     },
     getWeekData() {
       localServer
-        .get("/baseD/week.json")
+        .get("./baseD/week.json")
         .then((res) => {
           this.weekdays = res.data.weekdays;
           this.weekends = res.data.weekends;

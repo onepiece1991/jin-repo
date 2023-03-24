@@ -44,7 +44,7 @@ export default {
   methods: {
     getData() {
       localServer
-        .get("/baseD/echartsData01.json")
+        .get("./baseD/echartsData01.json")
         .then((res) => {
           this.pList01 = res.data.pList01;
         })
