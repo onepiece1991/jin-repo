@@ -1,12 +1,14 @@
 <template>
   <div class="cont-box">
     <p>休眠指令启动时间</p>
-    <input class="dt-input" placeholder="年" v-model="yearVal" />年
-    <input class="dt-input" placeholder="月" v-model="monthVal" />月
-    <input class="dt-input" placeholder="日" v-model="dayVal" />日
-    <input class="dt-input" placeholder="时" v-model="hourVal" />时
-    <input class="dt-input" placeholder="分" v-model="minuteVal" />分
-    <button class="t-btn" @click="getNewTime">更新</button>
+    <div class="t-wrap">
+      <input class="dt-input" placeholder="年" v-model="yearVal" />年
+      <input class="dt-input" placeholder="月" v-model="monthVal" />月
+      <input class="dt-input" placeholder="日" v-model="dayVal" />日
+      <input class="dt-input" placeholder="时" v-model="hourVal" />时
+      <input class="dt-input" placeholder="分" v-model="minuteVal" />分
+      <button class="t-btn" @click="getNewTime">更新</button>
+    </div>
     <p class="min-p" v-if="sleep">
       休眠时间：<span>{{ this.days }}</span
       >天<span>{{ this.hours }}</span
@@ -101,22 +103,29 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.dt-input {
-  width: 100px;
-  height: 40px;
-  padding: 5px 10px;
-  font-size: 14px;
-  line-height: 28px;
-  color: #333;
-  border: 1px solid #ddd;
-}
-.t-btn {
-  padding: 10px;
-  color: #fff;
-  font-size: 14px;
-  line-height: 28px;
-  border-radius: 8px;
-  background-color: #00a4ea;
+.t-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  .dt-input {
+    width: 100px;
+    height: 40px;
+    margin: 5px 0;
+    padding: 5px 10px;
+    font-size: 14px;
+    line-height: 28px;
+    color: #333;
+    border: 1px solid #ddd;
+  }
+  .t-btn {
+    height: 40px;
+    padding: 0 10px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 40px;
+    border-radius: 8px;
+    background-color: #00a4ea;
+  }
 }
 .min-p {
   padding: 50px 0;

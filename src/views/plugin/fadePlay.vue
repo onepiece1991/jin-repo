@@ -1,27 +1,20 @@
 <template>
   <div class="cont-box">
-    <div
-      class="fade-container"
-      :style="{ width: itemW + 'px' }"
-      @mouseover="stopFade"
-      @mouseout="continueFade"
-    >
+    <div class="fade-container" @mouseover="stopFade" @mouseout="continueFade">
       <ul class="fade-wrapper">
         <li
           :class="['fade-item', currentIndex == i ? 'active' : '']"
           v-for="(item, i) in fadeList"
-          :key="i"
+          :key="'item' + i"
         >
-          <div class="fade-div" :style="{ width: itemW + 'px' }">
-            fade-item {{ i }}
-          </div>
+          <div class="fade-div">fade-item {{ i + 1 }}</div>
         </li>
       </ul>
       <div class="location-wrapper">
         <div
           :class="['local-item', currentIndex == k ? 'active' : '']"
           v-for="(loc, k) in fadeList"
-          :key="k"
+          :key="'index' + k"
           @click="localIndex(k)"
         ></div>
       </div>
@@ -35,8 +28,7 @@
 export default {
   data() {
     return {
-      fadeList: ["1", "", "", "", "", "", ""],
-      itemW: 800, //子元素的宽度
+      fadeList: ["", "", "", "", "", "", ""],
       //定时器触发时间
       timeT: 2000, //2s触发一次定时器
       //左右箭头是否显示
@@ -93,15 +85,13 @@ export default {
 .fade-container {
   position: relative;
   margin: 0 auto;
-  width: 800px;
   overflow: hidden;
   .fade-wrapper {
     position: relative;
-    width: 800px;
     height: 300px;
     .fade-item {
       position: absolute;
-      width: 800px;
+      width: 100%;
       opacity: 0;
       z-index: 1;
       transition: all 1s;
@@ -133,6 +123,7 @@ export default {
     text-align: center;
     transform: translateX(-50%);
     z-index: 110;
+    white-space: nowrap;
     .local-item {
       display: inline-block;
       margin: 0 10px;
@@ -174,5 +165,23 @@ export default {
 }
 .arrow-R {
   right: 0;
+}
+@media screen and (max-width: 500px) {
+  .arrow-L,
+  .arrow-R {
+    width: 1rem;
+    height: 3rem;
+    font-size: 0.5rem;
+    line-height: 3rem;
+  }
+  .local-item {
+    margin: 0 0.1rem;
+    width: 0.1rem;
+    height: 0.1rem;
+    border-radius: 0.05rem;
+    &.active {
+      width: 0.2rem;
+    }
+  }
 }
 </style>

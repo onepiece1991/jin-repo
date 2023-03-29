@@ -1,13 +1,24 @@
 <template>
   <div class="cont-box">
     <p>默认下班时间是下午17:00（每10s刷新一次）</p>
+    <p>请输入下班时间(24小时制):</p>
     <div class="c-wrap">
       <input
         class="t-input"
-        v-model="timeVal"
-        placeholder="请输入下班时间点XX:XX(24小时制)"
+        v-model="hourVal"
+        placeholder="请输入小时"
+        @blur="checkHour"
+      /><span>:</span>
+      <input
+        class="t-input"
+        v-model="minuteVal"
+        placeholder="请输入分钟"
+        @blur="checkMinute"
       />
-      <button class="t-btn" @click="getNewTime()">更新</button>
+    </div>
+    <div class="btn-group">
+      <button class="t-btn" @click="refreshTime">更新</button>
+      <button class="t-btn gray" @click="resetTime">重置</button>
     </div>
     <p class="min-p error" v-if="overtime">
       你已经下班了！！！下班不积极，脑瓜有问题！哼~
@@ -18,7 +29,7 @@
     </p>
   </div>
   <popupAlert
-    popupMsg="请按照正确的格式输入!"
+    :popupMsg="popInfo"
     ref="errorAlert"
     @onclick="confirmQuit"
   ></popupAlert>
@@ -26,20 +37,22 @@
 
 <script>
 import popupAlert from "@/components/base/popupAlert";
-const defaultTimeH = 17;
-const defaultTimeM = 0;
 export default {
   data() {
     return {
-      timeVal: "",
+      defaultTimeH: "17",
+      defaultTimeM: "00",
+      hourVal: "",
+      minuteVal: "",
       countTime: 0,
       overtime: false,
       timer: "",
+      popInfo: "",
     };
   },
   mounted() {
     this.$nextTick(() => {
-      this.timing();
+      this.resetTime();
     });
   },
   methods: {
@@ -65,25 +78,52 @@ export default {
         this.countTime = timeS;
       }
     },
-    // 更新时间
-    getNewTime() {
-      var strT = this.timeVal;
-      if (strT.trim() != "") {
-        var stArr = strT.split(":");
-        if (stArr.length != 2) {
-          this.$refs.errorAlert.show();
-        } else {
-          var newH = stArr[0];
-          var newM = stArr[1];
-          this.initTime(newH, newM);
-        }
-      } else {
-        this.initTime(defaultTimeH, defaultTimeM);
-      }
-    },
+
     confirmQuit() {
       this.$refs.errorAlert.hide();
-      this.timeVal = "17:00";
+    },
+    // 失去焦点校验小时
+    checkHour() {
+      if (this.hourVal.trim() != "") {
+        if (parseInt(this.hourVal) < 9) {
+          this.popInfo = "还没上班呢！";
+          this.$refs.errorAlert.show();
+        } else if (
+          parseInt(this.hourVal) >= 9 &&
+          parseInt(this.hourVal) <= 24 &&
+          this.hourVal.length <= 2
+        ) {
+          this.refreshTime();
+        } else {
+          this.popInfo = "请按照24小时制输入正确的小时数！";
+          this.$refs.errorAlert.show();
+        }
+      }
+    },
+    // 失去焦点校验分钟
+    checkMinute() {
+      if (this.minuteVal.trim() != "") {
+        if (
+          parseInt(this.minuteVal) >= 0 &&
+          parseInt(this.minuteVal) <= 60 &&
+          this.minuteVal.length <= 2
+        ) {
+          this.refreshTime();
+        } else {
+          this.popInfo = "请按照24小时制输入正确的分钟数！";
+          this.$refs.errorAlert.show();
+        }
+      }
+    },
+    // 更新
+    refreshTime() {
+      this.initTime(this.hourVal, this.minuteVal);
+    },
+    // 重置
+    resetTime() {
+      this.hourVal = this.defaultTimeH;
+      this.minuteVal = this.defaultTimeM;
+      this.initTime(this.defaultTimeH, this.defaultTimeM);
     },
   },
   components: {
@@ -100,13 +140,21 @@ export default {
   .t-input {
     flex: 1;
     height: 40px;
-    margin: 10px 10px 10px 0;
+    min-width: 100px;
+    margin: 10px 0;
     padding: 5px 10px;
     font-size: 14px;
     line-height: 28px;
     color: #333;
     border: 1px solid #ddd;
   }
+  span {
+    width: 50px;
+    text-align: center;
+  }
+}
+.btn-group {
+  display: flex;
   .t-btn {
     width: 80px;
     padding: 5px 15px;
@@ -115,6 +163,10 @@ export default {
     line-height: 28px;
     border-radius: 8px;
     background-color: #00a4ea;
+    &.gray {
+      margin-left: 10px;
+      background-color: #aaa;
+    }
   }
 }
 .min-p {
@@ -134,13 +186,10 @@ export default {
     font-weight: bold;
   }
 }
-@media screen and (max-width: 500px) {
-  .c-wrap {
-    display: block;
-    .t-input {
-      display: block;
-      width: 100%;
-    }
-  }
-}
+// @media screen and (max-width: 500px) {
+//   .c-wrap {
+//     .t-input {
+//     }
+//   }
+// }
 </style>

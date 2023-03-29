@@ -1,5 +1,6 @@
 const path = require("path");
 const resolve = (dir) => path.join(__dirname, dir);
+const ip = require("ip").address();
 
 module.exports = {
   // 基本路径
@@ -14,7 +15,7 @@ module.exports = {
   },
   devServer: {
     // 本地ip地址
-    host: "localhost",
+    host: ip,
     port: 8080,
     open: true,
     /* 使用代理 */

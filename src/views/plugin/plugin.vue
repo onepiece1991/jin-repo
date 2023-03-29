@@ -87,9 +87,6 @@ export default {
 
 <style lang="less" scoped>
 .list-box {
-  // display: flex;
-  // align-items: center;
-  // flex-wrap: wrap;
   font-size: 0;
   li {
     display: inline-block;

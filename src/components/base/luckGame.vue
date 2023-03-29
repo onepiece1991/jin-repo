@@ -155,12 +155,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.animW2 {
-  display: flex;
-  display: -webkit-flex;
-  align-items: center;
-  justify-content: center;
-}
 .draw-main {
   position: relative;
   width: 100%;
@@ -168,66 +162,112 @@ export default {
   padding-top: 34px;
   background-color: #fff;
   z-index: 2;
-}
-.draw-close {
-  position: absolute;
-  top: 0;
-  left: calc(50% + 150px);
-  width: 28px;
-  height: 48px;
-  background: url(../../assets/images/luck/draw_close@2x.png) no-repeat center;
-  background-size: 100%;
-  cursor: pointer;
+  .draw-close {
+    position: absolute;
+    top: 0;
+    left: calc(50% + 150px);
+    width: 28px;
+    height: 48px;
+    background: url(../../assets/images/luck/draw_close@2x.png) no-repeat center;
+    background-size: 100%;
+    cursor: pointer;
+  }
   z-index: 10;
-}
-.draw-wrap {
-  /* min-height: 400px; */
-  padding-top: 64px;
-  background: url(../../assets/images/luck/luckyDraw_bg@2x.png) no-repeat top
-    center;
-  background-size: 420px 322px;
-}
-.game-box {
-  height: 300px;
-}
-.draw-tips {
-  padding: 14px 0 6px;
-  height: 50px;
-}
-.dt-txt {
-  font-size: 14px;
-  font-weight: bold;
-  color: #ffffff;
-  line-height: 30px;
-  letter-spacing: 1px;
-  text-align: center;
-  background: url(../../assets/images/luck/tip@2x.png) no-repeat top center;
-  background-size: 372px 30px;
-}
-.draw-btn {
-  height: 210px;
-  text-align: center;
-  background: url(../../assets/images/luck/draw_btn@2x.png) no-repeat top center;
-  background-size: 586px 210px;
-}
-.db-b {
-  position: relative;
-  display: inline-block;
-  padding: 0 50px;
-  font-size: 28px;
-  line-height: 48px;
-  font-weight: bold;
-  color: transparent;
-  color: #ffffff\0;
-  letter-spacing: 5px;
-  background-image: linear-gradient(to right, #fff, #fff2d7);
-  background-image: none\0;
-  background-color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-  cursor: pointer;
-  border: 0;
-  z-index: 10;
+  .draw-wrap {
+    /* min-height: 400px; */
+    padding-top: 64px;
+    background: url(../../assets/images/luck/luckyDraw_bg@2x.png) no-repeat top
+      center;
+    background-size: 420px 322px;
+    /* 抽奖主内容区域 */
+    .game-box {
+      width: 393px;
+      height: 189px;
+      margin: 0 auto;
+      padding: 20px 10px;
+      font-size: 0;
+      text-align: center;
+      background: url(../../assets/images/luck/luckyDraw_light.gif) no-repeat
+        center;
+      background-size: 100%;
+      overflow: hidden;
+      .game-item {
+        display: inline-block;
+        margin: 0 2px 0 3px;
+        width: 115px;
+        height: 152px;
+        overflow: hidden;
+        vertical-align: top;
+        ul {
+          &.not_trans {
+            transition: 0s !important;
+          }
+          .draw-li {
+            list-style: none;
+            position: relative;
+            width: 100%;
+            padding-top: 94px;
+            height: 152px;
+            font-size: 10px;
+            font-weight: bold;
+            line-height: 12px;
+            color: #feffda;
+            text-align: center;
+            background: url(../../assets/images/luck/redpacket@2x.png) no-repeat
+              center;
+            background-size: 115px 152px;
+            .draw-num {
+              font-size: 16px;
+              font-weight: bold;
+              line-height: 19px;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+    .draw-tips {
+      padding: 14px 0 6px;
+      height: 50px;
+      .dt-txt {
+        font-size: 14px;
+        font-weight: bold;
+        color: #ffffff;
+        line-height: 30px;
+        letter-spacing: 1px;
+        text-align: center;
+        background: url(../../assets/images/luck/tip@2x.png) no-repeat top
+          center;
+        background-size: 372px 30px;
+      }
+    }
+    .draw-btn {
+      height: 210px;
+      text-align: center;
+      background: url(../../assets/images/luck/draw_btn@2x.png) no-repeat top
+        center;
+      background-size: 586px 210px;
+      .db-b {
+        position: relative;
+        display: inline-block;
+        padding: 0 50px;
+        font-size: 28px;
+        line-height: 48px;
+        font-weight: bold;
+        color: transparent;
+        color: #ffffff\0;
+        letter-spacing: 5px;
+        background-image: linear-gradient(to right, #fff, #fff2d7);
+        background-image: none\0;
+        background-color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        cursor: pointer;
+        border: 0;
+        z-index: 10;
+      }
+    }
+  }
 }
 .draw-handle {
   position: absolute;
@@ -245,51 +285,6 @@ export default {
   }
 }
 
-/* 抽奖主内容区域 */
-.game-box {
-  width: 393px;
-  height: 189px;
-  margin: 0 auto;
-  padding: 20px 10px;
-  font-size: 0;
-  text-align: center;
-  background: url(../../assets/images/luck/luckyDraw_light.gif) no-repeat center;
-  background-size: 100%;
-  overflow: hidden;
-}
-.game-item {
-  display: inline-block;
-  margin: 0 2px 0 3px;
-  width: 115px;
-  height: 152px;
-  overflow: hidden;
-  vertical-align: top;
-  ul {
-    &.not_trans {
-      transition: 0s !important;
-    }
-  }
-}
-.draw-li {
-  list-style: none;
-  position: relative;
-  width: 100%;
-  padding-top: 94px;
-  height: 152px;
-  font-size: 10px;
-  font-weight: bold;
-  line-height: 12px;
-  color: #feffda;
-  text-align: center;
-  background: url(../../assets/images/luck/redpacket@2x.png) no-repeat center;
-  background-size: 115px 152px;
-}
-.draw-num {
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 19px;
-  text-align: center;
-}
 .draw-lh01 {
   position: absolute;
   top: -22px;
@@ -342,8 +337,84 @@ export default {
     opacity: 0;
   }
 }
-
-.ag-hide {
-  display: none !important;
+@media screen and (max-width: 500px) {
+  .draw-main {
+    min-height: 5.5rem;
+    padding-top: 0.34rem;
+    .draw-close {
+      left: calc(50% + 1.3rem);
+      width: 0.28rem;
+      height: 0.48rem;
+    }
+    .draw-wrap {
+      padding-top: 0.5rem;
+      background-size: 3.35rem 2.56rem;
+      /* 抽奖主内容区域 */
+      .game-box {
+        display: flex;
+        justify-content: space-between;
+        width: 3.2rem;
+        height: 1.54rem;
+        padding: 0.15rem;
+        .game-item {
+          margin: 0 0.02rem 0 0.03rem;
+          width: 0.9rem;
+          height: 1.19rem;
+          ul {
+            .draw-li {
+              padding-top: 0.68rem;
+              height: 1.19rem;
+              font-size: 0.1rem;
+              line-height: 0.12rem;
+              background-size: 0.9rem 1.19rem;
+              .draw-num {
+                font-size: 0.16rem;
+                line-height: 0.19rem;
+              }
+            }
+          }
+        }
+      }
+      .draw-tips {
+        padding: 0.1rem 0 0;
+        height: 0.4rem;
+        .dt-txt {
+          font-size: 0.12rem;
+          line-height: 0.24rem;
+          background-size: 3.35rem 0.24rem;
+        }
+      }
+      .draw-btn {
+        height: 1.79rem;
+        background-size: 5rem 1.79rem;
+        .db-b {
+          padding: 0 0.5rem;
+          font-size: 0.25rem;
+          line-height: 0.4rem;
+          letter-spacing: 0.05rem;
+        }
+      }
+    }
+  }
+  .draw-handle {
+    top: 1.6rem;
+    left: calc(50% + 1.3rem);
+    width: 0.9rem;
+    height: 1.25rem;
+    &.active {
+      transform-origin: 0 0.92rem;
+    }
+  }
+  .draw-lh01 {
+    top: -0.22rem;
+    width: 6.08rem;
+    height: 3.11rem;
+  }
+  .draw-lh02 {
+    top: -0.6rem;
+    width: 8.67rem;
+    height: 5.45rem;
+    margin-left: -4.33rem;
+  }
 }
 </style>

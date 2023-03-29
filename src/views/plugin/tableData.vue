@@ -1,7 +1,7 @@
 <template>
   <div class="cont-box">
     <h3 class="main-title">详情</h3>
-    <div class="table-box">
+    <div class="table-box" v-if="tableDataShow">
       <table class="public-table">
         <thead>
           <tr>
@@ -44,6 +44,7 @@
         </tbody>
       </table>
     </div>
+    <p class="tips" v-else>抱歉，此页面目前不适配该设备！</p>
   </div>
 </template>
 
@@ -51,6 +52,7 @@
 export default {
   data() {
     return {
+      tableDataShow: true, // 默认展示列表详情
       linesNo: 10, // 每行展示的房间数
       floorList: [
         {
@@ -222,6 +224,11 @@ export default {
     };
   },
   mounted() {
+    if (document.body.clientWidth >= 500) {
+      this.tableDataShow = true;
+    } else {
+      this.tableDataShow = false;
+    }
     this.initResultData();
   },
   methods: {
@@ -359,7 +366,7 @@ export default {
 /* 蓝色竖线标题 */
 .main-title {
   position: relative;
-  padding-left: 40px;
+  padding-left: 10px;
   font-size: 18px;
   line-height: 25px;
   color: #4a4a4f;
@@ -367,7 +374,7 @@ export default {
   &:before {
     content: "";
     position: absolute;
-    left: 30px;
+    left: 0;
     top: 50%;
     margin-top: -9px;
     width: 4px;
@@ -447,5 +454,11 @@ export default {
   top: 50%;
   margin-top: -8px;
   background-image: url(../../assets/images/table/confirm.png);
+}
+// 提示信息
+.tips {
+  padding: 20px;
+  font-size: 16px;
+  text-align: center;
 }
 </style>

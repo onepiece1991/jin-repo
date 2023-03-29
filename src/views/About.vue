@@ -11,6 +11,16 @@
         >友情链接</a
       >)
     </p>
+    <p class="a-title2">更多好用的工具推荐：</p>
+    <a target="_blank" class="a-link mr20" href="https://c.runoob.com/"
+      >菜鸟工具</a
+    >
+    <a
+      target="_blank"
+      class="a-link mr20"
+      href="https://c.runoob.com/front-end/58/"
+      >在线进制转换器</a
+    >
   </div>
 </template>
 
@@ -27,7 +37,7 @@ export default {};
   text-align: center;
 }
 .a-title2 {
-  margin-bottom: 10px;
+  margin: 10px 0;
   font-size: 14px;
   color: #333;
   line-height: 20px;
@@ -37,5 +47,8 @@ export default {};
   font-size: 14px;
   color: #333;
   line-height: 20px;
+}
+.mr20 {
+  margin-right: 20px;
 }
 </style>

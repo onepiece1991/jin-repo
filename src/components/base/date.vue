@@ -580,4 +580,15 @@ export default {
     background-color: #f0f;
   }
 }
+@media screen and (max-width: 500px) {
+  .back-today {
+    right: calc(-100% + 0.68rem);
+    margin-top: 0.2rem;
+    width: 0.68rem;
+    height: 0.3rem;
+    font-size: 0.12rem;
+    line-height: 0.3rem;
+    border-radius: 0.06rem;
+  }
+}
 </style>

@@ -287,6 +287,7 @@ export default {
 <style lang="less" scoped>
 .scroll-content {
   position: relative;
+  top: 8px;
   max-height: 312px;
   max-width: 500px;
   min-width: 94px;
@@ -365,6 +366,14 @@ export default {
   &.active,
   &:hover {
     color: #315efb;
+  }
+}
+@media screen and (max-width: 500px) {
+  .scroll-content {
+    min-width: 0.66rem;
+    .scroll-main {
+      padding: 0.09rem 0.05rem;
+    }
   }
 }
 </style>

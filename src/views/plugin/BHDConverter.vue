@@ -1,6 +1,6 @@
 <template>
   <div class="cont-box gray">
-    <h2 class="title">进制转换</h2>
+    <h2 class="title">进制转换(只转换整数部分)</h2>
     <div class="c-main">
       <ul class="c-menu">
         <li
@@ -41,6 +41,7 @@
       </ul>
       <div class="input">
         <input
+          type="number"
           class="c-input"
           placeholder="在这里输入数字"
           v-model="inputVal"
@@ -85,10 +86,16 @@
       </div>
     </div>
   </div>
+  <popupAlert
+    :popupMsg="popInfo"
+    ref="tipAlert"
+    @onclick="confirmClick"
+  ></popupAlert>
 </template>
 
 <script>
 import Clipboard from "clipboard";
+import popupAlert from "@/components/base/popupAlert";
 export default {
   data() {
     return {
@@ -97,6 +104,7 @@ export default {
       showResult: true,
       resultMsg: "",
       inputVal: "",
+      popInfo: "",
     };
   },
   methods: {
@@ -112,8 +120,23 @@ export default {
     // 其他进制转换成十进制: parseInt(要转换的数字，把这个数字当成几进制)
     transform() {
       this.showResult = true;
-      let m = parseInt(this.inputVal, this.currentIndex);
-      this.resultMsg = m.toString(this.targetIndex);
+      if (this.isNumber(this.inputVal)) {
+        let m = parseInt(this.inputVal, this.currentIndex);
+        this.resultMsg = m.toString(this.targetIndex);
+      } else {
+        this.popInfo = "请输入正确的数字!";
+        this.inputVal = "";
+        this.$refs.tipAlert.show();
+      }
+    },
+    /**
+     * 校验只要是数字（包含正负整数，0以及正负浮点数）就返回true
+     **/
+    isNumber(val) {
+      // var regPos = /^[0-9]+$/; // 这个不能校验浮点数
+      let regPos = /^[+-]?\d*(\.\d*)?(e[+-]?\d+)?$/;
+      // return !isNaN(parseFloat(val)) && isFinite(val);
+      return regPos.test(val);
     },
     // 复制
     copy(txt) {
@@ -124,7 +147,8 @@ export default {
       });
       // clipboard.on("success", (e) => {
       clipboard.on("success", () => {
-        console.log("复制成功！");
+        this.popInfo = "复制成功！";
+        this.$refs.tipAlert.show();
         // console.log(e.action); // 动作
         // console.log(e.text); // 复制的文本内容
         // console.log(e.trigger);
@@ -132,13 +156,21 @@ export default {
       });
       clipboard.on("error", () => {
         if (typeof txt != undefined) {
-          console.log("请输入正确的值");
+          this.popInfo = "请输入正确的值!";
+          this.$refs.tipAlert.show();
         } else {
-          console.log("该浏览器不支持自动复制,请手动复制！");
+          this.popInfo = "该浏览器不支持自动复制,请手动复制！";
         }
         clipboard.destroy();
       });
     },
+    // 点击确定
+    confirmClick() {
+      this.$refs.tipAlert.hide();
+    },
+  },
+  components: {
+    popupAlert,
   },
 };
 </script>
@@ -268,6 +300,7 @@ export default {
         -webkit-appearance: none;
         -moz-appearance: none;
         outline: none;
+        display: none;
       }
     }
   }
@@ -359,6 +392,7 @@ export default {
       border-radius: 0.06rem;
       label {
         font-size: 0.12rem;
+        line-height: 0.4rem;
       }
     }
   }

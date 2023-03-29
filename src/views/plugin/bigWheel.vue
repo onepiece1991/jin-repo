@@ -1,5 +1,5 @@
 <template>
-  <div class="cont-box main">
+  <div class="cont-box bw-main">
     <div class="cb-left">
       <p class="title">品类</p>
       <div class="checkbox-group">
@@ -209,7 +209,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.main {
+.bw-main {
   display: flex;
   // 左边-选择区
   .cb-left {
@@ -388,5 +388,49 @@ export default {
 .tips {
   color: #f65a5a;
   text-align: center;
+}
+@media screen and (max-width: 500px) {
+  .bw-main {
+    display: block;
+    .cb-left {
+      width: 100%;
+    }
+    .cb-right {
+      border-top: 1px dashed #e5e5e5;
+    }
+  }
+  .wheel {
+    width: 3.2rem;
+    height: 3.2rem;
+    &:before {
+      width: 3.04rem;
+      height: 3.04rem;
+    }
+    .round {
+      .prize {
+        width: 2.6rem;
+        height: 2.6rem;
+        .item-box {
+          .prize-item {
+            .draw-txt {
+              font-size: 0.12rem;
+              line-height: 0.16rem;
+            }
+          }
+        }
+      }
+    }
+    .start-btn {
+      width: 0.8rem;
+      height: 0.89rem;
+      .rotate-btn {
+        top: 0.05rem;
+        width: 0.8rem;
+        height: 0.8rem;
+        font-size: 0.18rem;
+        line-height: 0.25rem;
+      }
+    }
+  }
 }
 </style>

@@ -18,6 +18,7 @@
           :class="['slide-item', currentIndex == i ? 'active' : '']"
           v-for="(item, i) in slideList"
           :key="i"
+          :style="{ width: itemW + 'px' }"
         >
           <div class="slide-div" :style="{ width: itemW + 'px' }">
             slide-item {{ item }}
@@ -46,7 +47,7 @@
 export default {
   data() {
     return {
-      slideList: ["4", "1", "2", "3", "4", "1"],
+      slideList: ["1", "2", "3", "4", "5"],
       slideListFinal: [],
       itemW: 800, //子元素的宽度
       //定时器触发时间--2s触发一次定时器
@@ -58,7 +59,21 @@ export default {
       // 定时器
       timer: null,
       noLast: true,
+      // screenWidth: document.body.clientWidth, // 屏幕宽度
+      // screenHeight: document.body.clientHeight, // 屏幕高度
     };
+  },
+  mounted() {
+    this.autoSwitch();
+    if (document.body.clientWidth >= 500) {
+      this.itemW = 800;
+    } else {
+      this.itemW = 300;
+    }
+    let firstOne = this.slideList[0];
+    let lastOne = this.slideList.length - 1;
+    this.slideList.unshift(this.slideList[lastOne]);
+    this.slideList.push(firstOne);
   },
   methods: {
     autoSwitch() {
@@ -108,10 +123,6 @@ export default {
       this.currentIndex = m;
     },
   },
-  mounted() {
-    this.autoSwitch();
-  },
-  created() {},
   beforeUnmount() {
     clearInterval(this.timer);
   },
@@ -140,12 +151,6 @@ export default {
     }
     .slide-item {
       float: left;
-      width: 800px;
-      // transition: all 1s;
-      // &.active {
-      //   opacity: 1;
-      //   z-index: 100;
-      // }
       .slide-div {
         line-height: 300px;
         height: 300px;
@@ -214,5 +219,20 @@ export default {
 }
 .arrow-R {
   right: 0;
+}
+@media screen and (max-width: 500px) {
+  .arrow-L,
+  .arrow-R {
+    width: 0.6rem;
+    height: 3rem;
+    font-size: 0.5rem;
+    line-height: 3rem;
+  }
+  .local-item {
+    margin: 0 0.1rem;
+    width: 0.1rem;
+    height: 0.1rem;
+    border-radius: 0.05rem;
+  }
 }
 </style>

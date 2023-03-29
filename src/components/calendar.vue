@@ -115,7 +115,7 @@
           <p>{{ selectedLunarYear }}</p>
           <p>{{ selectedLunarMD }}</p>
         </div>
-        <div class="calendar-right-almanacbox">万<br />事<br />皆<br />宜</div>
+        <div class="calendar-right-almanacbox">万事皆宜</div>
       </div>
     </div>
   </div>
@@ -742,13 +742,22 @@ export default {
       }
       .calendar-right-almanacbox {
         position: relative;
-        margin-top: 12px;
-        padding-top: 20px;
+        width: 30px;
+        margin: 12px auto;
+        padding-top: 32px;
         font-size: 25px;
         line-height: 50px;
         font-weight: bold;
-        background: rgba(255, 255, 255, 0.15);
         height: calc(100% - 206px);
+        &:before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -42px;
+          width: 112px;
+          height: 100%;
+          background: rgba(255, 255, 255, 0.15);
+        }
       }
     }
   }
@@ -810,33 +819,33 @@ export default {
         padding: 9px 16px;
         overflow: auto;
       }
-      .scroll-wrap {
-        position: absolute;
-        top: 9px;
-        right: 0;
-        width: 6px;
-        border-top: none;
-        background-color: #fff;
-        .scroll-roll {
-          height: 294px;
-          width: 6px;
-          background: transparent;
-        }
-        .scroll-bar {
-          position: absolute;
-          top: 0;
-          left: 0;
-          z-index: 10;
-          margin-left: -2px;
-          width: 4px;
-          height: 14px;
-          border: none;
-          background: #4e6ef2;
-          border-radius: 3px;
-          overflow: hidden;
-          transition: all 0s;
-        }
-      }
+      // .scroll-wrap {
+      //   position: absolute;
+      //   top: 9px;
+      //   right: 0;
+      //   width: 6px;
+      //   border-top: none;
+      //   background-color: #fff;
+      //   .scroll-roll {
+      //     height: 294px;
+      //     width: 6px;
+      //     background: transparent;
+      //   }
+      //   .scroll-bar {
+      //     position: absolute;
+      //     top: 0;
+      //     left: 0;
+      //     z-index: 10;
+      //     margin-left: -2px;
+      //     width: 4px;
+      //     height: 14px;
+      //     border: none;
+      //     background: #4e6ef2;
+      //     border-radius: 3px;
+      //     overflow: hidden;
+      //     transition: all 0s;
+      //   }
+      // }
     }
   }
   .header-block-2 {
@@ -1093,6 +1102,198 @@ export default {
         }
       }
     }
+  }
+}
+@media screen and (max-width: 500px) {
+  .calendar-wrapper {
+    .calendar-container {
+      display: block;
+      height: auto;
+      border: 0.02rem solid #4e6ef2;
+      border-radius: 0.1rem;
+      .calendar-box-left {
+        width: 100%;
+        height: auto;
+        padding: 0.1rem 0.04rem;
+        border: 0;
+      }
+      .calendar-box-right {
+        position: relative;
+        display: flex;
+        width: 100%;
+        border-radius: 0 0 0.08rem 0.08rem;
+        padding: 0.1rem 0.1rem 0.6rem;
+        align-items: center;
+        .calendar-right-date {
+          line-height: 0.4rem;
+          font-size: 0.12rem;
+        }
+        .calendar-right-day {
+          width: 0.6rem;
+          height: 0.6rem;
+          line-height: 0.6rem;
+          font-size: 0.4rem;
+          border-radius: 0.1rem;
+        }
+        .calendar-right-almanacbox {
+          position: absolute;
+          bottom: -1px;
+          left: 0;
+          width: 100%;
+          height: 0.5rem;
+          line-height: 0.5rem;
+          letter-spacing: 0.2rem;
+          padding-top: 0;
+          margin: 0;
+          &::before {
+            left: 0;
+            width: 100%;
+            height: 0.5rem;
+            border-bottom-left-radius: 0.08rem;
+            border-bottom-right-radius: 0.08rem;
+          }
+        }
+      }
+    }
+  }
+  // 顶部下拉
+  .header-box {
+    font-size: 0.12rem;
+    height: 0.3rem;
+    justify-content: space-between;
+    .header-block-1 {
+      width: 0.66rem;
+      margin-right: 0;
+      .year-select {
+        line-height: 0.14rem;
+        padding: 0.07rem 0.05rem;
+        .year-cont {
+          margin-right: 0;
+        }
+        // padding-right: 0;
+      }
+    }
+    .header-block-2 {
+      width: 0.9rem;
+      padding: 0 0.2rem;
+      margin-right: 0;
+      .prev-month,
+      .next-month {
+        width: 0.2rem;
+        height: 0.3rem;
+        line-height: 0.3rem;
+        font-size: 0.14rem;
+        background-size: 0.12rem;
+      }
+      .month-select {
+        padding: 0.07rem 0.05rem;
+        border-radius: 0.06rem;
+        line-height: 0.14rem;
+        .month-cont {
+          margin-right: 0;
+        }
+      }
+      .month-wrapper {
+        left: 0.2rem;
+        top: 0.38rem;
+        width: 0.5rem;
+        border-radius: 0.06rem;
+        .month-main {
+          padding: 0.09rem 0.05rem;
+        }
+      }
+    }
+    .header-block-3 {
+      width: 0.75rem;
+      margin-right: 0;
+      .holiday-select {
+        padding: 0.07rem 0.05rem;
+        border-radius: 0.06rem;
+        line-height: 0.14rem;
+        .holiday-cont {
+          margin-right: 0;
+        }
+      }
+      .holiday-wrapper {
+        position: absolute;
+        left: 0;
+        top: 0.38rem;
+        max-height: 3.12rem;
+        width: 0.75rem;
+        border-radius: 0.06rem;
+        .holiday-main {
+          padding: 0.1rem 0.08rem;
+        }
+      }
+    }
+    .back-today {
+      position: relative;
+      margin-right: 0;
+      width: 0.6rem;
+      height: 0.3rem;
+      font-size: 0.12rem;
+      line-height: 0.3rem;
+      border-radius: 0.06rem;
+    }
+  }
+  // 具体日期区域
+  .content-box {
+    .content-thead {
+      margin-top: 0.1rem;
+      height: 0.36rem;
+      .content-th {
+        flex: 1;
+        width: auto;
+        height: 0.13rem;
+        font-size: 0.13rem;
+        line-height: 0.13rem;
+      }
+    }
+    .content-row {
+      .content-td {
+        padding: 0.01rem;
+        flex: 1;
+        .cell-box {
+          border-radius: 0.06rem;
+          width: 100%;
+          height: 0.56rem;
+          padding: 0;
+          .cell-holiday-sign {
+            left: 0.04rem;
+            top: 0.04rem;
+            font-size: 0.12rem;
+            line-height: 0.12rem;
+          }
+          .cell-daynumber {
+            height: 0.22rem;
+            font-size: 0.14rem;
+          }
+          .cell-almanac {
+            font-size: 0.1rem;
+          }
+          &.selected {
+            border-width: 0.02rem;
+          }
+          &.today {
+            border-width: 0.02rem;
+          }
+          &.cell-weekend-box {
+            &:hover {
+              border-width: 0.02rem;
+            }
+          }
+          &.cell-weekend-box {
+            &.selected {
+              border-width: 0.02rem;
+            }
+          }
+        }
+      }
+    }
+  }
+  .arrow-down {
+    width: 0.12rem;
+    height: 0.12rem;
   }
 }
 </style>

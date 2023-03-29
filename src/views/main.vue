@@ -284,6 +284,7 @@ header {
       .main-page {
         padding: 0.1rem;
         overflow-y: auto;
+        overflow-x: hidden;
         .cont-box {
           padding: 0.1rem;
         }
