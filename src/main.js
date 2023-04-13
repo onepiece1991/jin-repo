@@ -2,6 +2,8 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import "default-passive-events";
+
 // 引入 echarts
 // import * as echarts from "echarts";
 // 引入封装好的初始化方法

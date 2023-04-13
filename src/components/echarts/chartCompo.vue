@@ -5,11 +5,15 @@
 <script>
 export default {
   mounted() {
-    this.darwChart();
+    this.$nextTick(() => {
+      setTimeout(() => {
+        this.darwChart();
+      }, 100);
+    });
   },
   data() {
     return {
-      lineChart: null,
+      chart: null,
     };
   },
   props: {
@@ -39,9 +43,7 @@ export default {
   },
   methods: {
     darwChart() {
-      setTimeout(() => {
-        this.lineChart = this.$drawChart(this.id, this.option);
-      }, 100);
+      this.chart = this.$drawChart(this.id, this.option);
     },
   },
   watch: {
@@ -50,7 +52,7 @@ export default {
         if (this.chart) {
           this.chart.setOption(newVal);
         } else {
-          this.init();
+          this.darwChart();
         }
       },
       deep: true,

@@ -142,23 +142,6 @@ const routes = [
       },
     ],
   },
-  // echarts
-  // {
-  //   path: "/line",
-  //   name: "Line",
-  //   component: () => import("@/views/echarts/line"),
-  // },
-  // {
-  //   path: "/gauge",
-  //   name: "Gauge",
-  //   component: () => import("@/views/echarts/gauge"),
-  // },
-  // 驾驶舱
-  // {
-  //   path: "/otherPage",
-  //   name: "OtherPage",
-  //   component: () => import("@/views/otherPage"),
-  // },
   {
     path: "/cockpitOne",
     name: "CockpitOne",

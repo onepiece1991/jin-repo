@@ -78,51 +78,47 @@ const lineOption = {
       data: [],
       type: "line",
       symbol: "none",
-      itemStyle: {
-        normal: {
-          lineStyle: {
-            width: 2, //折线宽度
-            // opacity: 0.14,
-            color: {
-              type: "linear",
-              x: 0,
-              y: 0,
-              x2: 1,
-              y2: 0,
-              colorStops: [
-                {
-                  offset: 0,
-                  color: "#90FEDB", // 0% 处的颜色
-                },
-                {
-                  offset: 1,
-                  color: "#22E4F8", // 100% 处的颜色
-                },
-              ],
-              global: false, // 缺省为 false
+      lineStyle: {
+        width: 2, //折线宽度
+        // opacity: 0.14,
+        color: {
+          type: "linear",
+          x: 0,
+          y: 0,
+          x2: 1,
+          y2: 0,
+          colorStops: [
+            {
+              offset: 0,
+              color: "#90FEDB", // 0% 处的颜色
             },
-          },
-          areaStyle: {
-            opacity: 0.14,
-            color: {
-              type: "linear",
-              x: 0,
-              y: 0,
-              x2: 1,
-              y2: 0,
-              colorStops: [
-                {
-                  offset: 0,
-                  color: "#90FEDB", // 0% 处的颜色
-                },
-                {
-                  offset: 1,
-                  color: "#22E4F8", // 100% 处的颜色
-                },
-              ],
-              global: false, // 缺省为 false
+            {
+              offset: 1,
+              color: "#22E4F8", // 100% 处的颜色
             },
-          },
+          ],
+          global: false, // 缺省为 false
+        },
+      },
+      areaStyle: {
+        opacity: 0.14,
+        color: {
+          type: "linear",
+          x: 0,
+          y: 0,
+          x2: 1,
+          y2: 0,
+          colorStops: [
+            {
+              offset: 0,
+              color: "#90FEDB", // 0% 处的颜色
+            },
+            {
+              offset: 1,
+              color: "#22E4F8", // 100% 处的颜色
+            },
+          ],
+          global: false, // 缺省为 false
         },
       },
       smooth: true,
@@ -161,25 +157,23 @@ const gaugeOption = {
       radius: "90%",
       splitNumber: 0,
       itemStyle: {
-        normal: {
-          color: {
-            type: "linear",
-            x: 0,
-            y: 1,
-            x2: 0,
-            y2: 0,
-            colorStops: [
-              {
-                offset: 0,
-                color: "#90FEDB", // 0% 处的颜色
-              },
-              {
-                offset: 1,
-                color: "#22E4F8", // 100% 处的颜色
-              },
-            ],
-            global: false, // 缺省为 false
-          },
+        color: {
+          type: "linear",
+          x: 0,
+          y: 1,
+          x2: 0,
+          y2: 0,
+          colorStops: [
+            {
+              offset: 0,
+              color: "#90FEDB", // 0% 处的颜色
+            },
+            {
+              offset: 1,
+              color: "#22E4F8", // 100% 处的颜色
+            },
+          ],
+          global: false, // 缺省为 false
         },
       },
       progress: {
@@ -554,16 +548,19 @@ export default {
     };
   },
   mounted() {
-    this.getData();
+    this.$nextTick(() => {
+      this.getData();
+    });
   },
   methods: {
     getData() {
+      let that = this;
       localServer
         .get("./baseD/echartsData.json")
         .then((res) => {
-          lineOption.series[0].data = res.data.lineData.yVal;
+          that.lineOption.series[0].data = res.data.lineData.yVal;
           // 仪表盘-弧线
-          gaugeOption.series[0].data[0].value = res.data.gaugeData.val;
+          that.gaugeOption.series[0].data[0].value = res.data.gaugeData.val;
           // 仪表盘-接近圆形
           // 判断值是否为0，为0不显示
           let gOptionData = res.data.gaugeData2;
@@ -585,10 +582,9 @@ export default {
             if (gOptionData[i].value == 0) {
               optionObj.itemStyle.opacity = 0;
             }
-            gaugeOption2.series[i].max = gOptionData[i].maxVal;
-            console.log(gaugeOption2.series[i]);
+            that.gaugeOption2.series[i].max = gOptionData[i].maxVal;
             // optionArr.push(optionObj);
-            gaugeOption2.series[i].data.push(optionObj);
+            that.gaugeOption2.series[i].data.push(optionObj);
           }
 
           // 柱状图数据处理
@@ -607,8 +603,8 @@ export default {
               };
             }
           }
-          barOption.xAxis.data = barXVal;
-          barOption.series[0].data = barYVal;
+          that.barOption.xAxis.data = barXVal;
+          that.barOption.series[0].data = barYVal;
         })
         .catch((error) => {
           console.log(JSON.stringify(error));

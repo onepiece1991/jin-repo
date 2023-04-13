@@ -42,3 +42,23 @@ export function drawChart(dom, option) {
   EleResize.on(resizeDiv, listener);
   return $Chart;
 }
+
+/** 封装 echart初始化方法，传入class类名
+ */
+export function drawChartC(classname, optionArr) {
+  setTimeout(() => {
+    const myEchart = document.getElementsByClassName(classname);
+    let chart = null;
+    Array.prototype.forEach.call(myEchart, function (element, i) {
+      element.setAttribute("_echarts_instance_", "");
+      chart = echarts.init(element);
+      chart.setOption(optionArr[i]);
+    });
+    // 或者
+    // for (let i = 0; i < myEchart.length; i++) {
+    //   myEchart[i].setAttribute("_echarts_instance_", "");
+    //   chart = echarts.init(myEchart[i]);
+    //   chart.setOption(optionArr[i]);
+    // }
+  });
+}
