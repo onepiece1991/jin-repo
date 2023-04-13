@@ -9,5 +9,30 @@
     {"txt": "这是下拉框选项7", "value": "100007"},
     {"txt": "这是下拉框选项8", "value": "100008"},
     {"txt": "这是下拉框选项9", "value": "100009"}
+  ],
+  "pList02": [
+    {"name": "项目二", "sumNo": "85", "fDirectionUp": true, "floatNum": "1.2", "money": "235,825.00", "option": "lineOption01"},
+    {"name": "项目二", "sumNo": "5", "fDirectionUp": true, "floatNum": "1.0", "money": "5,825.00", "option": "lineOption02"},
+    {"name": "项目二", "sumNo": "66", "fDirectionUp": false, "floatNum": "0.6", "money": "235,000.00", "option": "lineOption03"}
+  ],
+  "lineData01": [
+    {"yVal": [0, 0, 0, 120, 654, 630, 932, 901, 934, 1290, 1330, 1320]},
+    {"yVal": [1000, 0, 0, 120, 1654, 410, 32, 445, 934, 290, 330, 1020]},
+    {"yVal": [560, 0, 1200, 100, 230, 30, 92, 99, 534, 1090, 130, 320]}
+  ],
+  "pList03": [
+    {"name": "项目三", "sumNo": "85", "fDirectionUp": true, "floatNum": "1.2", "money": "235,825.00", "option": "lineOption01"},
+    {"name": "项目三", "sumNo": "5", "fDirectionUp": true, "floatNum": "1.0", "money": "5,825.00", "option": "lineOption02"},
+    {"name": "项目三", "sumNo": "66", "fDirectionUp": false, "floatNum": "0.6", "money": "235,000.00", "option": "lineOption03"}
+  ],
+  "lineData02": [
+    {"yVal": [1000, 0, 0, 120, 1654, 410, 32, 445, 934, 290, 330, 1020]},
+    {"yVal": [0, 0, 0, 120, 654, 630, 0, 901, 934, 0, 1330, 0]},
+    {"yVal": [200, 99, 0, 1090, 130, 0, 560, 0, 1200, 100, 230, 0]}
+  ],
+  "pList09": [
+    {"name": "项目一", "value": "2"},
+    {"name": "项目二", "value": "6"},
+    {"name": "项目三", "value": "27"}
   ]
 }
