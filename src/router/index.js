@@ -140,6 +140,15 @@ const routes = [
           title: "进制转换器",
         },
       },
+      // otherPages
+      {
+        path: "/lottery",
+        name: "Lottery",
+        component: () => import("@/views/otherPages/lottery"),
+        meta: {
+          title: "lottery",
+        },
+      },
     ],
   },
   {

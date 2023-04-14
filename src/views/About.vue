@@ -21,6 +21,8 @@
       href="https://c.runoob.com/front-end/58/"
       >在线进制转换器</a
     >
+    <p class="a-title2">amuseMyself：</p>
+    <p><router-link to="/lottery" class="a-link">lottery</router-link></p>
   </div>
 </template>
 
