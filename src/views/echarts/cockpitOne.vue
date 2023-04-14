@@ -44,7 +44,7 @@
             class="swpier"
             :modules="modules"
             direction="vertical"
-            loop="true"
+            :loop="true"
             :autoplay="{
               delay: 2000,
               disableOnInteraction: false,
@@ -76,7 +76,7 @@
             class="swpier"
             :modules="modules"
             direction="vertical"
-            :loop="true"
+            ::loop="true"
             :autoplay="{
               delay: 2000,
               disableOnInteraction: false,
@@ -117,7 +117,7 @@
         </li>
         <li class="cm-item cmi07">
           <h4>项目七<span class="pdw">单位：万元</span></h4>
-          <!-- <ul class="building-box">
+          <!-- 
              原排列
               1   4   6   8
               2           9
@@ -129,95 +129,17 @@
               11          5
                           6
               10   9   8   7
-              <li class="bb-list bb01">
-                <p>杭州市运河综合保护开发建设集团有限责任公司</p>
-                <p class="bb-money"><span>¥235,825.00</span></p>
-              </li>
-              <li class="bb-list bb02">
-                <p>杭州市金融投资集团有限公司</p>
-                <p class="bb-money"><span>¥235,825.00</span></p>
-              </li>
-              <li class="bb-list bb03">
-                <p>杭州市实业投资集团有限公司</p>
-                <p class="bb-money"><span>¥235,825.00</span></p>
-              </li>
-              <li class="bb-list bb04">
-                <p>杭州市地铁集团有限责任公司</p>
-                <p class="bb-money"><span>¥235,825.00</span></p>
-              </li>
-              <li class="bb-list bb05">
-                <p>杭州种业集团有限公司</p>
-                <p class="bb-money"><span>¥235,825.00</span></p>
-              </li>
-              <li class="bb-list bb06">
-                <p>西湖电子集团有限公司</p>
-                <p class="bb-money"><span>¥235,825.00</span></p>
-              </li>
-              <li class="bb-list bb07">
-                <p>杭州市交通投资集团有限公司</p>
-                <p class="bb-money"><span>¥235,825.00</span></p>
-              </li>
-              <li class="bb-list bb08">
-                <p>杭州市商贸旅游集团有限公司</p>
-                <p class="bb-money"><span>¥235,825.00</span></p>
-              </li>
-              <li class="bb-list bb09">
-                <p>杭州市钱江新城投资集团有限公司</p>
-                <p class="bb-money"><span>¥235,825.00</span></p>
-              </li>
-              <li class="bb-list bb10">
-                <p>杭州市国有资本投资运营有限公司</p>
-                <p class="bb-money"><span>¥235,825.00</span></p>
-              </li>
-              <li class="bb-list bb11">
-                <p>杭州市城市建设投资集团有限公司</p>
-                <p class="bb-money"><span>¥678,825.00</span></p>
-              </li>
-            </ul> -->
+               -->
           <ul class="building-box popmax-box active">
-            <li class="bb-list bb01">
-              <p>杭州市运河综合保护开发建设集团有限责任公司</p>
-              <p class="bb-money"><span>¥235,825.00</span></p>
-            </li>
-            <li class="bb-list bb02">
-              <p>杭州市金融投资集团有限公司</p>
-              <p class="bb-money"><span>¥235,825.00</span></p>
-            </li>
-            <li class="bb-list bb03">
-              <p>杭州市实业投资集团有限公司</p>
-              <p class="bb-money"><span>¥235,825.00</span></p>
-            </li>
-            <li class="bb-list bb04">
-              <p>杭州市地铁集团有限责任公司</p>
-              <p class="bb-money"><span>¥235,825.00</span></p>
-            </li>
-            <li class="bb-list bb05">
-              <p>杭州种业集团有限公司</p>
-              <p class="bb-money"><span>¥235,825.00</span></p>
-            </li>
-            <li class="bb-list bb06">
-              <p>西湖电子集团有限公司</p>
-              <p class="bb-money"><span>¥235,825.00</span></p>
-            </li>
-            <li class="bb-list bb07">
-              <p>杭州市交通投资集团有限公司</p>
-              <p class="bb-money"><span>¥235,825.00</span></p>
-            </li>
-            <li class="bb-list bb08">
-              <p>杭州市商贸旅游集团有限公司</p>
-              <p class="bb-money"><span>¥235,825.00</span></p>
-            </li>
-            <li class="bb-list bb09">
-              <p>杭州市钱江新城投资集团有限公司</p>
-              <p class="bb-money"><span>¥235,825.00</span></p>
-            </li>
-            <li class="bb-list bb10">
-              <p>杭州市国有资本投资运营有限公司</p>
-              <p class="bb-money"><span>¥235,825.00</span></p>
-            </li>
-            <li class="bb-list bb11">
-              <p>杭州市城市建设投资集团有限公司</p>
-              <p class="bb-money"><span>¥678,825.00</span></p>
+            <li
+              :class="['bb-list', 'bb0' + (parseInt(i) + 1)]"
+              v-for="(item, i) in pList07"
+              :key="i"
+            >
+              <p>{{ item.name }}</p>
+              <p class="bb-money">
+                <span>¥{{ item.money }}</span>
+              </p>
             </li>
           </ul>
         </li>
@@ -485,6 +407,7 @@ export default {
       lineOptionArr01: [],
       pList03: [],
       lineOptionArr02: [],
+      pList07: [],
       pList09: [],
     };
   },
@@ -690,6 +613,8 @@ export default {
             that.lineOptionArr02.push(lineOption02);
           }
           drawChartC("chartSwiper3", that.lineOptionArr02);
+          // 图7
+          that.pList07 = res.data.pList07;
           // 图9
           that.pList09 = res.data.pList09;
         })
@@ -925,5 +850,131 @@ export default {
 // swiper
 .swiper {
   height: 170px;
+}
+// 图7
+.building-box {
+  position: relative;
+  height: 323px;
+  background: url(../../assets/images/chartOne/buildings@2x.png) no-repeat 62px
+    50px;
+  background-size: 670px 256px;
+}
+.bb-list {
+  position: absolute;
+  padding: 6px 8px;
+  max-width: 166px;
+  min-width: 130px;
+  /* height: 64px; */
+  font-size: 12px;
+  line-height: 16px;
+  color: #fff;
+  background-color: #050811;
+  border: 1px solid #4da9ff;
+  border-radius: 2px;
+}
+.bb01 {
+  top: 49px;
+  left: 26px;
+}
+.bb-money {
+  margin-top: 4px;
+}
+.bb-money > span {
+  display: inline-block;
+  font-weight: bold;
+  color: #4da9ff;
+}
+/* 排列
+              1   4   6   8
+              2           9
+                          10
+              3   5   7   11
+
+排列
+              1   2   3   4
+              11          5
+                          6
+              10   9   8   7
+ */
+.bb02 {
+  top: 17px;
+  left: 234px;
+}
+.bb03 {
+  top: 17px;
+  left: 423px;
+}
+.bb04 {
+  top: 17px;
+  right: 28px;
+}
+.bb05 {
+  top: 90px;
+  right: 28px;
+}
+.bb06 {
+  top: 162px;
+  right: 28px;
+}
+.bb07 {
+  bottom: 22px;
+  right: 28px;
+}
+.bb08 {
+  bottom: 22px;
+  left: 423px;
+}
+.bb09 {
+  bottom: 22px;
+  left: 234px;
+}
+.bb010 {
+  bottom: 22px;
+  left: 26px;
+}
+.bb011 {
+  top: 143px;
+  left: 26px;
+}
+
+/* 图8 */
+.legend-box {
+  padding: 10px 20px;
+  font-size: 0;
+  text-align: center;
+}
+.lb-list {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 10px;
+  padding-left: 13px;
+  font-size: 12px;
+  color: #626f86;
+  line-height: 18px;
+  text-align: left;
+}
+.lb-list:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 8px;
+  height: 8px;
+  background-color: #32d296;
+  border-radius: 2px;
+}
+.lb-list.lb02:before {
+  background-color: #ec80ae;
+}
+.lb-list p {
+  display: inline-block;
+}
+.lb-money {
+  margin-left: 10px;
+  color: #afbdd1;
+}
+.ss-right {
+  padding: 20px 20px 0 0;
 }
 </style>

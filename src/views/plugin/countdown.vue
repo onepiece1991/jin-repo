@@ -53,11 +53,12 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.resetTime();
+      this.timing();
     });
   },
   methods: {
     timing() {
-      this.timer = setInterval(this.getNewTime, 1000);
+      this.timer = setInterval(this.refreshTime, 1000);
     },
     // 初始化
     initTime(h, m) {
@@ -125,6 +126,9 @@ export default {
       this.minuteVal = this.defaultTimeM;
       this.initTime(this.defaultTimeH, this.defaultTimeM);
     },
+  },
+  beforeUnmount() {
+    clearInterval(this.timer);
   },
   components: {
     popupAlert,

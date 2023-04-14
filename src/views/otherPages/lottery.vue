@@ -1,5 +1,5 @@
 <template>
-  <div class="mb20">
+  <div class="cont-box mb20">
     <input
       class="input"
       type="text"
@@ -12,7 +12,6 @@
       v-model="inputVal02"
       placeholder="请输入大于等于2的数字"
     />
-    <!-- <br> -->
     <button class="button" @click="gotoCP">生成</button>
     <button class="button" @click="colourless = true">无色版</button>
     <button class="button" @click="colourless = false">有色版</button>
@@ -124,7 +123,7 @@ export default {
   display: inline-block;
   margin: 10px;
   padding-left: 10px;
-  width: 300px;
+  width: 260px;
   font-size: 14px;
   line-height: 40px;
   border: 1px solid #d9d9d9;
