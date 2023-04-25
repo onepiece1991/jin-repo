@@ -146,7 +146,23 @@ const routes = [
         name: "Lottery",
         component: () => import("@/views/otherPages/lottery"),
         meta: {
-          title: "lottery",
+          title: "节流",
+        },
+      },
+      {
+        path: "/throttle",
+        name: "Throttle",
+        component: () => import("@/views/otherPages/throttle"),
+        meta: {
+          title: "节流",
+        },
+      },
+      {
+        path: "/debounce",
+        name: "Debounce",
+        component: () => import("@/views/otherPages/debounce"),
+        meta: {
+          title: "防抖",
         },
       },
     ],
