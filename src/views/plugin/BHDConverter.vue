@@ -41,7 +41,7 @@
       </ul>
       <div class="input">
         <input
-          type="number"
+          type="text"
           class="c-input"
           placeholder="在这里输入数字"
           v-model="inputVal"
@@ -120,14 +120,14 @@ export default {
     // 其他进制转换成十进制: parseInt(要转换的数字，把这个数字当成几进制)
     transform() {
       this.showResult = true;
-      if (this.isNumber(this.inputVal)) {
-        let m = parseInt(this.inputVal, this.currentIndex);
-        this.resultMsg = m.toString(this.targetIndex);
-      } else {
-        this.popInfo = "请输入正确的数字!";
-        this.inputVal = "";
-        this.$refs.tipAlert.show();
-      }
+      // if (this.isNumber(this.inputVal)) {
+      let m = parseInt(this.inputVal, this.currentIndex);
+      this.resultMsg = m.toString(this.targetIndex);
+      // } else {
+      //   this.popInfo = "请输入正确的数字!";
+      //   this.inputVal = "";
+      //   this.$refs.tipAlert.show();
+      // }
     },
     /**
      * 校验只要是数字（包含正负整数，0以及正负浮点数）就返回true
