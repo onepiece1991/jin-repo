@@ -1,8 +1,12 @@
 <template>
-  <button @click="sendCode" :class="{ disabled: !flag }">{{ btnTxt }}</button>
+  <div class="cont-box">
+    <button @click="sendCode" :class="{ disabled: !flag }">{{ btnTxt }}</button>
+    <button @click="submit">节流（阻止用户短时间内多次提交）</button>
+  </div>
 </template>
 
 <script>
+import { throttle2 } from "@/utility/global";
 export default {
   data() {
     return {
@@ -30,6 +34,9 @@ export default {
         t -= 1;
       }, 1000);
     },
+    submit: throttle2(function () {
+      console.log("提交");
+    }, 2000),
   },
   beforeUnmount() {
     clearInterval(this.timer);
@@ -41,6 +48,7 @@ export default {
 button {
   display: inline-block;
   padding: 0 10px;
+  margin-right: 10px;
   height: 30px;
   line-height: 28px;
   font-size: 14px;

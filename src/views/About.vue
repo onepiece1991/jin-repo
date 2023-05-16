@@ -27,13 +27,15 @@
     <p>
       函数节流：是确保函数特定的时间内至多执行一次。
       函数防抖：是函数在特定的时间内不被再调用后执行。
+    </p>
+    <div>
       <router-link to="/throttle" class="a-link mr20"
         >节流（throttle）</router-link
       >
       <router-link to="/debounce" class="a-link mr20"
         >防抖（debounce）</router-link
       >
-    </p>
+    </div>
   </div>
 </template>
 

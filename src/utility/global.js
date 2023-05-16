@@ -55,3 +55,35 @@ export const debounce1 = (fn, wait, immediate) => {
     }
   };
 };
+
+/**
+ * 函数节流
+ * @param {Number} clicktime 最后一个按钮点击的时间
+ * @param {Number} time 两次点击的时间间隔
+ */
+export function throttle(clicktime, time) {
+  time = time || 600;
+  let nowTime = new Date().getTime();
+  if (clicktime != "" && nowTime - clicktime < time) {
+    return "";
+  } else {
+    return nowTime;
+  }
+}
+
+/**
+ * 函数节流
+ * @param {Function} fn 最终要执行的方法
+ * @param {Number} time 两次点击的时间间隔
+ */
+export const throttle2 = (fn, wait) => {
+  let lastTime = 0;
+  wait = wait || 600;
+  return function () {
+    let nowTime = new Date().getTime();
+    if (nowTime - lastTime > wait) {
+      lastTime = nowTime;
+      fn.apply();
+    }
+  };
+};
